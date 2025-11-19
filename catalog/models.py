@@ -1,3 +1,63 @@
 from django.db import models
 
-# Create your models here.
+
+class Category(models.Model):
+    name = models.CharField(
+        max_length=150,
+        help_text="Введите наименование категории",
+        verbose_name="Наименование",
+    )
+    description = models.TextField(
+        help_text="Добавьте описание категории",
+        verbose_name="Описание",
+        blank=True,
+        null=True,
+    )
+
+    def __str__(self):
+        return f"{self.name}"
+
+    class Meta:
+        verbose_name = "категория"
+        verbose_name_plural = "категории"
+
+
+class Product(models.Model):
+    name = models.CharField(
+        max_length=150,
+        help_text="Введите наименование продукта",
+        verbose_name="Наименование",
+    )
+    description = models.TextField(
+        help_text="Добавьте описание продукта",
+        verbose_name="Описание",
+        blank=True,
+        null=True,
+    )
+    image = models.ImageField(
+        upload_to="media/images",
+        help_text="Добавьте изображение продукта",
+        verbose_name="Изображение",
+        blank=True,
+        null=True,
+    )
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.SET_NULL,
+        related_name="products",
+        blank=True,
+        null=True,
+    )
+    prise = models.FloatField()
+    created_at = models.DateTimeField(auto_created=True, verbose_name="Дата создания")
+    updated_at = models.DateTimeField(
+        auto_now_add=True, verbose_name="Дата последнего изменения"
+    )
+
+    def __str__(self):
+        return f"{self.name} {self.category}"
+
+    class Meta:
+        verbose_name = "продукт"
+        verbose_name_plural = "продукты"
+        ordering = ["category", "name"]
