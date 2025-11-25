@@ -35,7 +35,7 @@ class Product(models.Model):
         null=True,
     )
     image = models.ImageField(
-        upload_to="media/images",
+        upload_to="images",
         help_text="Добавьте изображение продукта",
         verbose_name="Изображение",
         blank=True,
@@ -48,7 +48,7 @@ class Product(models.Model):
         blank=True,
         null=True,
     )
-    prise = models.FloatField()
+    price = models.FloatField()
     created_at = models.DateTimeField(auto_created=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(
         auto_now_add=True, verbose_name="Дата последнего изменения"
