@@ -1,0 +1,31 @@
+{% extends 'blogs/base.html' %}
+
+{% block title %}Каталог{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        <div class="col">
+            <div class="card shadow-sm">
+                <img src="{{ blogs.image.url }}" class="card-img-top" alt="{{ blogs.title }}" height="225" style="object-fit: contain;">
+                <div class="card-body">
+                    <p class="card-text">Заголовок: {{blogs.title}} : {{blogs.content}}</p>
+                    <p class="card-text">Дата создания: {{blogs.created_at}}</p>
+                    <p class="card-text">Публиуация: {{blogs.is_published}}</p>
+                    <p class="card-text">Количество просмотров: {{blogs.views_count}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a class="btn btn-primary" href="{% url 'blogs:blogs_list' %}" role="button">Назад</a>
+
+                        </div>
+                        <small class="text-body-secondary">9 mins</small></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
