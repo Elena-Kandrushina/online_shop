@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'catalog/base.html' %}
 
 {% block title %}Каталог{% endblock %}
 
@@ -6,7 +6,7 @@
 
 <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        {% for product in products %}
+        {% for product in object_list %}
         <div class="col">
             <div class="card shadow-sm">
                 <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}" height="225" style="width: 100%; object-fit: contain;">
