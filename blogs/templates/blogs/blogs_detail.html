@@ -1,0 +1,33 @@
+{% extends 'blogs/base.html' %}
+
+{% block title %}Детали записи{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="mb-3">
+        <a class="btn btn-secondary" href="{% url 'blogs:blogs_list' %}">К списку</a>
+        <a class="btn btn-warning" href="{% url 'blogs:blogs_edit' blog.pk %}">Редактировать</a>
+        <form action="{% url 'blogs:blogs_delete' blog.pk %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Удалить</button>
+        </form>
+    </div>
+
+    <div class="card shadow-sm">
+    {% if blog.image %}
+        <img src="{{ blog.image.url }}" class="card-img-top" alt="{{ blog.title }}" height="225" style="object-fit: contain;">
+    {% else %}
+        <div style="height:225px; display:flex; align-items:center; justify-content:center; background-color:#f0f0f0;">
+            Нет изображения
+        </div>
+    {% endif %}
+    <div class="card-body">
+        <h3>{{ blog.title }}</h3>
+        <p>{{ blog.content }}</p>
+        <p>Дата создания: {{ blog.created_at }}</p>
+        <p>Публикация: {{ blog.is_published }}</p>
+        <p>Количество просмотров: {{ blog.views_count }}</p>
+    </div>
+    </div>
+</div>
+{% endblock %}
