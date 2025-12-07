@@ -49,10 +49,11 @@ class Product(models.Model):
         null=True,
     )
     price = models.FloatField()
-    created_at = models.DateTimeField(auto_created=True, verbose_name="Дата создания")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(
         auto_now_add=True, verbose_name="Дата последнего изменения"
     )
+    is_available = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.name} {self.category}"
