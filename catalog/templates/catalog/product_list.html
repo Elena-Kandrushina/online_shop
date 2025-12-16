@@ -4,6 +4,17 @@
 
 {% block content %}
 <a href="{% url 'catalog:product_add' %}" class="btn btn-success mb-3">Добавить новый продукт</a>
+<h2>Выберите категорию:</h2>
+<ul>
+    <!--<li><a href="{% url 'catalog:products_list' %}">Все продукты</a></li>-->
+    {% for cat in categories %}
+        <li>
+            <a href="{% url 'catalog:category_products' cat.id %}">
+                {{ cat.name }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
 <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         {% for product in object_list %}
