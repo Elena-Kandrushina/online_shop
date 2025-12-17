@@ -1,0 +1,22 @@
+{% extends 'catalog/base.html' %}
+<h1>Продукты в категории: {{ category.name }}</h1>
+{% block content %}
+
+{% if products %}
+    <ul>
+        {% for product in products %}
+            <li>
+                <h2>{{ product.name }}</h2>
+                <p>{{ product.description }}</p>
+                <p>Цена: {{ product.price }}</p>
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width:200px;">
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Нет продуктов в этой категории.</p>
+{% endif %}
+<a class="btn btn-primary" href="{% url 'catalog:products_list' %}" role="button">Назад</a>
+{% endblock %}
